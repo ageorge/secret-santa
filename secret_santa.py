@@ -28,7 +28,6 @@ REQRD = (
     'PASSWORD', 
     'TIMEZONE', 
     'PARTICIPANTS', 
-    'DONT-PAIR', 
     'FROM', 
     'SUBJECT', 
     'MESSAGE',
@@ -117,7 +116,7 @@ def main(argv=None):
                     'Required parameter %s not in yaml config file!' % (key,))
 
         participants = config['PARTICIPANTS']
-        dont_pair = config['DONT-PAIR']
+        dont_pair = config.get('DONT-PAIR', [])
         if len(participants) < 2:
             raise Exception('Not enough participants specified.')
         

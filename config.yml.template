@@ -15,6 +15,7 @@ PARTICIPANTS:
 
 
 # Warning -- if you mess this up you could get an infinite loop
+# This key is optional, if you don't want to limit pairings you should remove it
 DONT-PAIR:
   - Chad, Jen    # Chad and Jen are married
   - Chad, Bill   # Chad and Bill are best friends
