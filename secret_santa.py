@@ -11,6 +11,7 @@ import socket
 import sys
 import getopt
 import os
+import getpass
 
 help_message = '''
 To use, fill out config.yml with your own participants. You can also specify
@@ -26,7 +27,6 @@ REQRD = (
     'SMTP_SERVER',
     'SMTP_PORT',
     'USERNAME',
-    'PASSWORD',
     'TIMEZONE',
     'PARTICIPANTS',
     'FROM',
@@ -152,9 +152,13 @@ call with the --send argument:
             """ % ("\n".join([str(p) for p in pairs]))
 
         if send:
+            username = config['USERNAME']
+            password = config.get('PASSWORD', None)
+            if password is None:
+                password = getpass.getpass('%s password: ' % username)
             server = smtplib.SMTP(config['SMTP_SERVER'], config['SMTP_PORT'])
             server.starttls()
-            server.login(config['USERNAME'], config['PASSWORD'])
+            server.login(username, password)
         for pair in pairs:
             zone = pytz.timezone(config['TIMEZONE'])
             now = zone.localize(datetime.datetime.now())

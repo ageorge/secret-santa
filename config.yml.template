@@ -1,4 +1,7 @@
-# Required to connect to your outgoing mail server. Example for using gmail:
+# Required to connect to your outgoing mail server.
+# If you don't want to  have your password written in plain text here remove
+# the key and you will be asked for it at runtime.
+# Example for using gmail:
 # gmail
 SMTP_SERVER: smtp.gmail.com
 SMTP_PORT: 587
