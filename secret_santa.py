@@ -1,3 +1,4 @@
+# -*- coding: utf8 -*-
 import yaml
 # sudo pip install pyyaml
 import re
@@ -51,7 +52,7 @@ class Person:
         self.invalid_matches = invalid_matches
 
     def __str__(self):
-        return "%s <%s>" % (self.name, self.email)
+        return "%s <%s>" % (self.name.encode('utf-8'), self.email)
 
 class Pair:
     def __init__(self, giver, reciever):
@@ -59,7 +60,7 @@ class Pair:
         self.reciever = reciever
 
     def __str__(self):
-        return "%s ---> %s" % (self.giver.name, self.reciever.name)
+        return "%s ---> %s" % (self.giver.name.encode('utf-8'), self.reciever.name.encode('utf-8'))
 
 def parse_yaml(yaml_path=CONFIG_PATH):
     return yaml.load(open(yaml_path))
@@ -172,7 +173,7 @@ call with the --send argument:
                 santee=pair.reciever.name,
             )
             if send:
-                result = server.sendmail(frm, [to], body)
+                result = server.sendmail(frm, [to], body.encode('utf-8'))
                 print "Emailed %s <%s>" % (pair.giver.name, to)
 
         if send:
